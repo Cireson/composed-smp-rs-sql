@@ -1,0 +1,106 @@
+version: '3.6'
+
+services: 
+
+  sql:
+    build: 
+      context: .\SQL
+    image: devops0101/mssql-server-with-custom-gmsa-sysadmin:2017
+    hostname: ${sqlcredspecfile}
+    security_opt:
+      - credentialspec=file://${sqlcredspecfile}.json
+    restart: always
+    volumes: 
+      - ${volumepathforsql}
+    environment:
+      - sa_password=${sqlsapassword}
+      - ACCEPT_EULA=Y
+      - gmsa_username=${gMSAuserNames}
+      # You could attach an existing DB here by using the attach-dbs variable to point at JSON string, 
+      ## see https://github.com/Microsoft/mssql-docker/tree/master/windows/mssql-server-windows-developer
+    ports: 
+     - "1433:1433"
+    dns: 
+      - ${dnsserver}
+    dns_search:
+      - ${dnssuffix}     
+
+  portal_dev:
+    depends_on:
+      - sql
+    build: 
+      context: .\SMP
+      args: 
+        smp_zip_uri: ${smp_zip_uri}/${devSMPversion}.2016.zip
+        Hostname: ${devcredspecfile}
+    image: devops0101/smp-composed-dev:${devSMPversion}
+    environment:
+      - ManagementDBName=${devManagementDBName}
+      - SQLServer=${sqlcredspecfile}    
+      - ApplicationTitle=Portal v ${devSMPversion} ENV:DEV
+      - AnalyticDBName=${devAnalyticDBName}
+      - ManagementServer=${ManagementServer}
+      - ManagementServerBinaryPath=${ManagementServerBinaryPath}
+      - AnalystsADGroup=${AnalystsADGroup}
+      - AssetManagementADGroup=${AssetManagementADGroup}
+      - KnowledgeManagerADGroup=${KnowledgeManagerADGroup}
+      - SMSQLServer=${SMSQLServer}
+      - SMTPServerName=${SMTPServerName}
+      - SMTPServerPort=${SMTPServerPort}
+      - SMTPEmailReturnAddress={SMTPEmailReturnAddress}
+    security_opt:
+      - credentialspec=file://${devcredspecfile}.json
+    hostname: ${devcredspecfile}  
+    restart: always
+    ports: 
+     - "8080:80"
+    volumes: 
+      - ${devVolumepathforcustomspace}
+    dns: 
+    - ${dnsserver}
+    dns_search:
+    - ${dnssuffix}
+
+  remotesupport_dev:
+    depends_on:
+      - sql
+    build: 
+      context: .\RemoteSupport
+    image: devops0101/remotesupport
+    environment:
+      - SqlServer=${sqlcredspecfile}
+      - SA_Password=${sqlsapassword}
+      - applicationVersion=${RemoteSupportVersion}
+      - PlatformLogLevel=${PlatformLogLevel}
+      - DBName=${DBName}
+      - ApplicationName=Cireson.ControlCenter.Core
+      - productKey=${productKey}
+      - LdapPath=${LdapPath}
+      - LdapUserName=${LdapUserName}
+      - LdapPassword=${LdapPassword}
+      - LdapDomain=${LdapDomain}
+      - ConfigMgrSiteServer=${ConfigMgrSiteServer}
+      - ConfigMgrUserName=${ConfigMgrUserName}
+      - ConfigMgrPassword=${ConfigMgrPassword}
+      - RMDomain=${RMDomain}
+      - RMUserName=${RMUserName}
+      - RMPassword=${RMPassword}
+      - AdministratorGroupName=${AdministratorGroupName}
+    security_opt:
+      - credentialspec=file://${RemoteSupportcredspecfile}.json
+    hostname: ${RemoteSupportcredspecfile}  
+    restart: always
+    ports: 
+     - "8081:80"
+    #volumes: 
+    # - ${RemoteSupportVolumeForPlatformLogs}
+    dns: 
+    - ${dnsserver}
+    dns_search:
+    - ${dnssuffix}   
+
+networks:
+     default:
+          external:
+           name: nat
+

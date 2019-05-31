@@ -1,0 +1,52 @@
+#Versions#
+devSMPversion=9.0.10
+RemoteSupportVersion=5.5.3-beta-unitypoint0113
+
+#General Vars#
+smp_zip_uri=https://ciresonreleases.blob.core.windows.net/servicemgrportal/PreviousVersions
+smp_previewzip_uri=https://ciresonreleases.blob.core.windows.net/servicemgrportal/Preview/Zips
+dnsserver=172.21.21.5
+dnssuffix=evallab.local
+gMSAuserNames=EVALLAB\GMSA_Docker$,EVALLAB\GMSA_DOCKERUAT$
+
+##Dev Environment Vars##
+
+#SMP#
+devcredspecfile=GMSA_Docker
+devManagementDBName=ServiceManagementComposed_DEV2
+devAnalyticDBName=CiresonAnalyticsComposed_DEV2
+devVolumepathforcustomspace=.\volumes\CustomSpace:C:\Inetpub\CiresonPortal\CustomSpace
+devSQLServer=EvalLab-SQL.evallab.local
+AnalystsADGroup=SCSM Analysts
+AssetManagementADGroup=SCSM Asset Managers
+KnowledgeManagerADGroup=SCSM KB Managers
+ManagementServer=EvalLab-SCSM.evallab.local
+ManagementServerBinaryPath=\\EvalLab-SCSM.evallab.local\c$\Program Files\Microsoft System Center\Service Manager\SDK Binaries\
+SMSQLServer=EvalLab-SQL.evallab.local
+SMTPServerName=EvalLab-SCSM.evallab.local
+SMTPServerPort=25
+SMTPEmailReturnAddress=Cireson@EvalLab.Local
+
+#RemoteSupport#
+RemoteSupportcredspecfile=GMSA_DOCKERUAT
+RemoteSupportVolumeForPlatformLogs=C:\Container-Volumes\RemoteSupport:C:\programdata\Cireson.Platform.Host
+
+DBName=RemoteSupport
+productKey=
+LdapPath=LDAP://evallab-dc1.evallab.local
+LdapUserName=Administrator
+LdapPassword=P@ssw0rd
+LdapDomain=EVALLAB
+ConfigMgrSiteServer=EVALLAB-SCCM.evallab.local
+ConfigMgrUserName=EVALLAB\Administrator
+ConfigMgrPassword=P@ssw0rd
+RMDomain=EVALLAB
+RMUserName=Administrator
+RMPassword=P@ssw0rd
+AdministratorGroupName=EVALLAB\Domain Admins
+PlatformLogLevel=300
+
+####SQL Environment Vars####
+sqlcredspecfile=GMSA_DOCKERSQL
+sqlsapassword=P@ssw0rd
+volumepathforsql=C:\Container-Volumes\SQL-Composed:C:\temp
