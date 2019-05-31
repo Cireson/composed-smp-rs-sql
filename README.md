@@ -49,12 +49,15 @@ OR
 - docker pull devops0101/mssql-server-with-custom-gmsa-sysadmin:2017 
 OR   
 - docker build -t mssql-server-with-custom-gmsa-sysadmin:2017 .
-9. Review and update .env file with your environment information such as domain name, dns server ip address and setting the desired version you want on each evironment etc. As this is using SQL 2017, versions v9.0.4+ must be used. Authentication in Server 2016 windows containers the hostname of the container must match the GMSA account name (This is not a requirement for Server 2019 containers)
-10. Review and update docker-compose.yml with image names and where you wish to map container volumes for customspace and sql.
-11. Copy .\Volumes\Custom space to the desired location on your host machine to match the docker-compose.yml (By default the YAML file expects customspace to exist in C:\Container-Volumes\SMP-Composed\CustomSpace
-13. Start\Build Containers
+9. Review and update .env file with your environment information such as domain name, product keydns server ip address and setting the desired version you want on each evironment etc as highlighted below. As this is using SQL 2017, versions v9.0.4+ must be used. Authentication in Server 2016 windows containers the hostname of the container must match the GMSA account name (This is not a requirement for Server 2019 containers)
+
+![EnvironmentFile](https://github.com/Cireson/composed-smp-rs-sql/blob/master/Volumes/Screenshots/Environment.png)
+
+10. Start\Build Containers
 - For interactive logging: docker-compose up 
 - For detached\no logging: docker-compose up --d
+
+![ComposeUp](https://github.com/Cireson/composed-smp-rs-sql/blob/master/Volumes/Screenshots/Compose-Up.png)
 
 To access containers go to the IP address of the dockerhost and the ports that are natted in the docker-compose yaml (SMP=8080, RS=8081, SQL=1433), for example dockerhost for screenshots below are running on 172.21.21.20
 
@@ -62,7 +65,7 @@ To access containers go to the IP address of the dockerhost and the ports that a
 ![RemoteSupport](https://github.com/Cireson/composed-smp-rs-sql/blob/master/Volumes/Screenshots/SMP.png)
 ![SQL](https://github.com/Cireson/composed-smp-rs-sql/blob/master/Volumes/Screenshots/SQL.png)
 
-14. Stop\remove Containers
+11. Stop\remove Containers
 - docker-compose down
 
 ## Windows Container Version Compatibility
