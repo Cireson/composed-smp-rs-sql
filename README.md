@@ -66,7 +66,10 @@ To access containers go to the IP address of the dockerhost and the ports that a
 ![SQL](https://github.com/Cireson/composed-smp-rs-sql/blob/master/Volumes/Screenshots/SQL.png)
 
 11. Stop\remove Containers
-- docker-compose down
+- docker-compose down\
+
+Should you only wish to spin up remote manage or visa versa just comment out the lines for that particular service:
+![YAML](https://github.com/Cireson/composed-smp-rs-sql/blob/master/Volumes/Screenshots/ComposeYAML.png)
 
 ## Windows Container Version Compatibility
 If pulling from deveops0101 dockerhub repo, note images were build for Server 2016 - if prompted with comability error it will require the image be rebuilt locally. For 2019 update the prereq and SQL dockerfiles FROM image to be mcr.microsoft.com/windows/servercore:1809 
