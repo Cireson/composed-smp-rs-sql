@@ -1,7 +1,6 @@
-![DOCKER](https://github.com/jjburr/composed-ciresonportal-sql/blob/master/Volumes/CustomSpace/login.png)
+![DOCKER](https://github.com/Cireson/composed-smp-rs-sql/blob/master/Volumes/CustomSpace/login.png)
 
 # Containerized Cireson Portal, Remove Manager & SQL for Dev Environments
-
 
 Compose container Dev environments for the Cireson Portal for Service Manager, Remote Support and container SQL. Easily define and build the for different versions in an environment file.
 
@@ -50,14 +49,19 @@ OR
 - docker pull devops0101/mssql-server-with-custom-gmsa-sysadmin:2017 
 OR   
 - docker build -t mssql-server-with-custom-gmsa-sysadmin:2017 .
-9. Create a tranistive docker network (OPTIONAL -by default you have a nat network - if using nat you need to declare ports you want want to expose in the compose file (As you are natting ports to the host IP address), remove the ipv4 static address and change external network to nat at the end of compose file)
-- See https://www.ntweekly.com/2017/03/30/how-to-create-a-transparent-network-with-windows-containers/ (I used the non-DHCP option)
-10. Review and update .env file with your environment information, setting the desired version you want on each evironment. As this is using SQL 2017, versions v9.0.4+ must be used. Authentication in Server 2016 windows containers the hostname of the container must match the GMSA account name (This is not a requirement for Server 2019 containers)
-11. Review and update docker-compose.yml with image names and where you wish to map container volumes for customspace and sql.
-12. Copy .\Volumes\Custom space to the desired location on your host machine to match the docker-compose.yml (By default the YAML file expects customspace to exist in C:\Container-Volumes\SMP-Composed\CustomSpace
+9. Review and update .env file with your environment information such as domain name, dns server ip address and setting the desired version you want on each evironment etc. As this is using SQL 2017, versions v9.0.4+ must be used. Authentication in Server 2016 windows containers the hostname of the container must match the GMSA account name (This is not a requirement for Server 2019 containers)
+10. Review and update docker-compose.yml with image names and where you wish to map container volumes for customspace and sql.
+11. Copy .\Volumes\Custom space to the desired location on your host machine to match the docker-compose.yml (By default the YAML file expects customspace to exist in C:\Container-Volumes\SMP-Composed\CustomSpace
 13. Start\Build Containers
 - For interactive logging: docker-compose up 
 - For detached\no logging: docker-compose up --d
+
+To access containers go to the IP address of the dockerhost and the ports that are natted in the docker-compose yaml (SMP=8080, RS=8081, SQL=1433), for example dockerhost for screenshots below are running on 172.21.21.20
+
+![SMP](https://github.com/Cireson/composed-smp-rs-sql/blob/master/Volumes/Screenshots/RemoteSupport.png)
+![RemoteSupport](https://github.com/Cireson/composed-smp-rs-sql/blob/master/Volumes/Screenshots/SMP.png)
+![SQL](https://github.com/Cireson/composed-smp-rs-sql/blob/master/Volumes/Screenshots/SQL.png)
+
 14. Stop\remove Containers
 - docker-compose down
 
