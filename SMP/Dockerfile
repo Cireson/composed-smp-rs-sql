@@ -1,5 +1,5 @@
 # escape=`
-
+#For Window 2019 use FROM mcr.microsoft.com/windows/servercore:1809 
 FROM devops0101/smppreq
 
 LABEL maintainer "Joe Burrows"
