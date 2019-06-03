@@ -1,8 +1,8 @@
-![DOCKER](https://github.com/Cireson/composed-smp-rs-sql/blob/master/Volumes/CustomSpace/login.png)
+![Architecture](https://github.com/Cireson/composed-smp-rs-sql/blob/master/Volumes/Screenshots/Lab-Architecture.png)
 
 # Containerized Cireson Portal, Remove Manager & SQL for Dev Environments
 
-Compose container Dev environments for the Cireson Portal for Service Manager, Remote Support and container SQL. Easily define and build the for different versions in an environment file.
+Compose container Dev environments for the Cireson Portal for Service Manager, Remote Support and container SQL. Easily define and build the for different versions in an environment file. This setup requires domain joined virtual machines for Active Directory, Service Manager, Configuration Manager, SQL Server and a docker host.
 
 1. Create Docker Host by Installing Docker & Compose on a Domain Joined Windows 2016\2019 VM
 - Run Install_Docker_and_Docker-Compose.ps1
