@@ -1,6 +1,6 @@
 ![Architecture](https://github.com/Cireson/composed-smp-rs-sql/blob/master/Volumes/Screenshots/Lab-Architecture.png)
 
-# Containerized Cireson Portal, Remove Manager & SQL for Dev Environments
+# Containerized Cireson Portal, Remote Support & SQL for Dev Environments
 
 Compose container Dev environments for the Cireson Portal for Service Manager, Remote Support and container SQL. Easily define and build the for different versions in an environment file. This setup requires domain joined virtual machines for Active Directory, Service Manager, Configuration Manager, SQL Server and a docker host.
 
