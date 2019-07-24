@@ -111,7 +111,7 @@ $LocalUrl = "http://localhost:$HTTPPort"
 $creds = New-CPEXCredential -username $ServiceUser -password $ServicePassword
 
 Write-output "Waiting for install"
-$response = Wait-CpexExtensionInstalled -applicationId $ApplicationName -applicationVersion $applicationVersion -platformRootUri "$LocalUrl/api" -credential $creds -timeoutSeconds 650
+$response = Wait-CpexExtensionInstalled -applicationId $ApplicationName -applicationVersion $applicationVersion -platformRootUri "$LocalUrl/api" -credential $creds -timeoutSeconds 850
 
 Write-Output "Configuring Application"
 Add-CPEXProviderRoleMap -providerRole $AdministratorGroupName -applicationRole Administrators -platformRootUri "$localUrl/api" -credential $creds
