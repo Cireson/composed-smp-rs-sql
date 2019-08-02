@@ -13,7 +13,7 @@ https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-contain
 ```
 add-KdsRootKey -EffectiveTime (Get-Date).AddHours(-10)
 ```
-3. Create x3 Group Policy Service Accounts, 1 for SQL, 1 for Dev, 1 for UAT. Targeting an AD group that contains your docker host computers, and replacing .EVALLAB.LOCAL with your domain name:
+3. Create x3 Group Policy Service Accounts, 1 for SQL, 1 for Dev, 1 for UAT. Targeting an AD group that contains your docker host computers, **and replacing .EVALLAB.LOCAL with your domain name**:
 ```
 New-ADServiceAccount-name GMSA_DOCKER -DNSHostName GMSA_DOCKER.EVALLAB.LOCAL -PrincipalsAllowedToRetrieveManagedPassword 'EVALLAB DockerHosts'
 New-ADServiceAccount-name GMSA_DOCKERSQL -DNSHostName GMSA_DOCKERSQL.EVALLAB.LOCAL -PrincipalsAllowedToRetrieveManagedPassword 'EVALLAB DockerHosts'
@@ -51,7 +51,7 @@ OR
 - docker build -t mssql-server-with-custom-gmsa-sysadmin:2017 .
 9. Review and update .env file with your environment information such as domain name, product keydns server ip address and setting the desired version you want on each evironment etc as highlighted below. As this is using SQL 2017, versions v9.0.4+ must be used. Authentication in Server 2016 windows containers the hostname of the container must match the GMSA account name (This is not a requirement for Server 2019 containers)
 
-![EnvironmentFile](https://github.com/Cireson/composed-smp-rs-sql/blob/master/Volumes/Screenshots/Environment.png)
+![EnvironmentFile](https://github.com/Cireson/composed-smp-rs-sql/blob/master/Volumes/Screenshots/environment.png)
 
 10. Start\Build Containers
 - For interactive logging: docker-compose up 
