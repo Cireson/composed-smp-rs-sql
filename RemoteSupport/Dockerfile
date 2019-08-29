@@ -1,7 +1,7 @@
 # escape=`
 
 #For Window 2019 use FROM mcr.microsoft.com/windows/servercore:1809 
-FROM microsoft/windowsservercore:latest
+FROM mcr.microsoft.com/windows/servercore:ltsc2016
 
 LABEL maintainer "Joe Burrows"
 
