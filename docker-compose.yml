@@ -5,7 +5,7 @@ services:
   sql:
     build: 
       context: .\SQL
-    image: devops0101/mssql-server-with-custom-gmsa-sysadmin:2017
+    image: mssql-server-with-custom-gmsa-sysadmin:2017
     hostname: ${sqlcredspecfile}
     security_opt:
       - credentialspec=file://${sqlcredspecfile}.json
@@ -33,7 +33,7 @@ services:
       args: 
         smp_zip_uri: ${smp_zip_uri}/${devSMPversion}.2016.zip
         Hostname: ${devcredspecfile}
-    image: devops0101/smp-composed-dev:${devSMPversion}
+    image: smp-composed-dev:${devSMPversion}
     environment:
       - ManagementDBName=${devManagementDBName}
       - SQLServer=${sqlcredspecfile}    
