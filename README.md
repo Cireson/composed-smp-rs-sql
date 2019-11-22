@@ -31,7 +31,6 @@ New-ADServiceAccount -name GMSA_DOCKERUAT -DNSHostName GMSA_DOCKERUAT.EVALLAB.LO
    Test-AdServiceAccount GMSA_DOCKERUAT
 ```
 5. Create the docker credential spec files for each GMSA Account
-- Download and Install the CredentialSpec module from https://www.powershellgallery.com/packages/CredentialSpec/1.0.0
 - Run below
 ```
 install-module credentialspec
@@ -41,13 +40,9 @@ New-CredentialSpec -Name GMSA_DOCKERSQL -AccountName GMSA_DOCKERSQL
 New-CredentialSpec -Name GMSA_DOCKERUAT -AccountName GMSA_DOCKERUAT
 ```     
 6. Create an AD Group for the Cred Spec Service Accounts and grant permissions for the group to be in SCSM Admins and SQL Permissions to the Service manager SQL instance
-7. Build the docker preq image for SMP or PULL from deveops0101 container repo (Or let docker-compose automatically pull image when compose up is run on step 11)
-- docker pull devops0101/smppreq
-OR
+7. Build the docker preq image for SMP 
 - Run Build-Preq-DockerImage.ps1 or run the docker CLI for build (Make sure to change into the directory that contains the dockerfile)
-8. Build OR Pull (Or let docker-compose automatically pull image when compose up is run on step 11) from deveops0101 repo the customized MS container SQL Image (This has full text search enabled and adds GMSA Accounts on container Startup)
-- docker pull devops0101/mssql-server-with-custom-gmsa-sysadmin:2017 
-OR   
+8. Build the customized MS container SQL Image (This has full text search enabled and adds GMSA Accounts on container Startup)
 - docker build -t mssql-server-with-custom-gmsa-sysadmin:2017 .
 9. Review and update .env file with your environment information such as domain name, product keydns server ip address and setting the desired version you want on each evironment etc as highlighted below. As this is using SQL 2017, versions v9.0.4+ must be used. Authentication in Server 2016 windows containers the hostname of the container must match the GMSA account name (This is not a requirement for Server 2019 containers)
 
