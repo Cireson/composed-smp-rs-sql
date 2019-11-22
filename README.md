@@ -15,9 +15,9 @@ add-KdsRootKey -EffectiveTime (Get-Date).AddHours(-10)
 ```
 3. Create x3 Group Policy Service Accounts, 1 for SQL, 1 for Dev, 1 for UAT. Targeting an AD group that contains your docker host computers, **and replacing .EVALLAB.LOCAL with your domain name**:
 ```
-New-ADServiceAccount-name GMSA_DOCKER -DNSHostName GMSA_DOCKER.EVALLAB.LOCAL -PrincipalsAllowedToRetrieveManagedPassword 'EVALLAB DockerHosts'
-New-ADServiceAccount-name GMSA_DOCKERSQL -DNSHostName GMSA_DOCKERSQL.EVALLAB.LOCAL -PrincipalsAllowedToRetrieveManagedPassword 'EVALLAB DockerHosts'
-New-ADServiceAccount-name GMSA_DOCKERUAT -DNSHostName GMSA_DOCKERUAT.EVALLAB.LOCAL -PrincipalsAllowedToRetrieveManagedPassword 'EVALLAB DockerHosts'
+New-ADServiceAccount -name GMSA_DOCKER -DNSHostName GMSA_DOCKER.EVALLAB.LOCAL -PrincipalsAllowedToRetrieveManagedPassword 'EVALLAB DockerHosts'
+New-ADServiceAccount -name GMSA_DOCKERSQL -DNSHostName GMSA_DOCKERSQL.EVALLAB.LOCAL -PrincipalsAllowedToRetrieveManagedPassword 'EVALLAB DockerHosts'
+New-ADServiceAccount -name GMSA_DOCKERUAT -DNSHostName GMSA_DOCKERUAT.EVALLAB.LOCAL -PrincipalsAllowedToRetrieveManagedPassword 'EVALLAB DockerHosts'
    ````
 4. Add each of the 3 GMSA Accounts to Docker Host
 ```
