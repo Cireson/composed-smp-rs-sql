@@ -70,7 +70,7 @@ Should you only wish to spin up remote manage or visa versa just comment out the
 - The portal.mpb file does not import into SCSM during installation, having an incompabatable or missing portal.mpb file will cause the license page to not load, and workitems not to sync correctly. Workaround is to manually copy the management pack from \InstallationFiles\ManagementPacks in the setup zip and import manually into SCSM.
 
 ## Windows Container Version Compatibility
-If pulling from deveops0101 dockerhub repo, note images were build for Server 2016 - if prompted with comability error it will require the image be rebuilt locally. For 2019 update the prereq and SQL dockerfiles FROM image to be mcr.microsoft.com/windows/servercore:1809 
+dockerfiles for images were build for Server 2016 - if using server 2019 or latter you will be prompted with comability error. For 2019 update the prereq and SQL dockerfiles FROM image to be mcr.microsoft.com/windows/servercore:1809 (as shown in the commented line in each dockerfile)
 
 See below for more information:
 https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/version-compatibility
